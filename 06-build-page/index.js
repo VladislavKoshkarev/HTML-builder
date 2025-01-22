@@ -50,7 +50,7 @@ async function createBundle() {
 
 async function buildPage() {
   let html = await fs.readFile(htmlTemplatePath, 'utf8');
-  const templates = [...html.matchAll(/{{(.*)}}/g)];
+  const templates = [...html.matchAll(/\{\{(\w+)\}\}/g)];
   for (const template of templates) {
     const newPath = path.join(componentsPath, `${template[1]}.html`);
     const newHtml = await fs.readFile(newPath, 'utf8');
